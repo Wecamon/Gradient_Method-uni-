@@ -93,18 +93,23 @@ namespace Practica
                 };
             for (int k = 0; k < iterations; k++)
             {
+                // вектор в результате умножения матрицы A на вектор X(k)
                 var vectorAnX = MultiplyByVector(matrixAiParsed, vectorResult);
 
                 // создаём вектор невязок
                 var vectorRk = VectorSubstraction(vectorBiParsed, vectorAnX);
 
-                // создаём поинтер на матрицу A
+                // числитель в формуле шага
                 var denominated = MultiplyByVector(matrixAiParsed, vectorRk).MultiplyVectors(vectorRk);
+                
+                // знаменатель
                 var denominator = MultiplyByVector(matrixAiParsed, vectorRk)
                     .MultiplyVectors(MultiplyByVector(matrixAiParsed, vectorRk));
 
+                // шаг alpha(k)
                 var stepAlphaK = denominated / denominator;
 
+                // результат вектор X(k)
                 vectorResult = VectorSums(vectorResult, VectorByNumber(vectorRk, stepAlphaK));
             }
         }
