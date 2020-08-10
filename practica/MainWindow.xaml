@@ -1,0 +1,56 @@
+﻿<Window x:Class="Practica.MainWindow"
+
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+
+xmlns:local="clr-namespace:Practica"
+
+mc:Ignorable="d"
+
+Title="Градиентный метод с минимальными невязками" Height="490" Width="660">
+
+    <Grid >
+
+        <TextBlock HorizontalAlignment="Left" Width="30" Margin="20,127,0,0" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Text="A=" VerticalAlignment="Top"/>
+
+        <DataGrid Name="matrixA" Background="LightGray" HorizontalAlignment="Left" Height="174" Margin="66,45,0,0" VerticalAlignment="Top" Width="317"
+
+AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="False" LoadingRow="DG_LoadingRow"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="439,20,0,0" TextWrapping="Wrap" FontSize ="14" Text="Размерность" Height="25" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Width="30" Margin="20,340,0,0" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Text="B=" VerticalAlignment="Top"/>
+        
+        <TextBox Name="N_Size" HorizontalAlignment="Left" Height="25" Margin="435,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="85"/>
+
+        <Button Name="crt_mat" Click="Generate_Click" FontSize="14" Content="Составить
+                " HorizontalAlignment="Left" Margin="558,40,0,0" VerticalAlignment="Top" Width="70" Height="50"/>
+
+        <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="660">
+
+            <MenuItem Header = "Разработчик">
+
+                <TextBlock Text="Мищенко Руслан БИСТ-111 "/>
+
+            </MenuItem>
+
+            <MenuItem Header = "Вариант">
+
+                <TextBlock Text="Вариант №43: Решение системы алгебраических уравнений. Градиентный метод с минимальными невязками"/>
+
+            </MenuItem>
+
+        </Menu>
+        <DataGrid Name="matrixB"  HorizontalAlignment="Left" Height="204" Background="LightGray" Margin="66,246,0,0" VerticalAlignment="Top" Width="100" AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="False" LoadingRow="DG_LoadingRow" />
+        <DataGrid Name ="matrixC" HorizontalAlignment="Left" Height="204" Background="LightGray" Margin="491,246,0,0" VerticalAlignment="Top" Width="100" AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="False" LoadingRow="DG_LoadingRow"/>
+        <Label Content="Точность:" HorizontalAlignment="Left" Margin="260,341,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="AccuracyInputBox" HorizontalAlignment="Left" Height="17" Margin="260,372,0,0" TextWrapping="Wrap" Text="0,01" VerticalAlignment="Top" Width="86"/>
+        <Button x:Name="Calculate"  Content="Решить" HorizontalAlignment="Left" Height="41" Margin="260,409,0,0" VerticalAlignment="Top" Width="86" Click="Calculate_OnClick"/>
+
+    </Grid>
+
+</Window>
