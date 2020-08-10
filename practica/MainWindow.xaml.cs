@@ -46,7 +46,7 @@ namespace Practica
                 var m2 = new ObservableCollection<string>();
                 var m3 = new ObservableCollection<string>();
 
-                for (int j = 0; j < n + 1; j++)
+                for (int j = 0; j < n; j++)
                 {
                     m.Add("0");
                     m2.Add("0");
@@ -60,7 +60,7 @@ namespace Practica
             matrixA.ItemsSource = matrix;
             matrixB.ItemsSource = matrix2;
             matrixC.ItemsSource = matrix3;
-
+            
             if (countColumn > 0)
             {
 
@@ -116,17 +116,15 @@ namespace Practica
 
         private void Calculate_OnClick(object sender, RoutedEventArgs e)
         {
-            float accuracy = float.Parse(AccuracyInputBox.Text);
-            ObservableCollection<float> matrixAiParsed = matrix.ParseToFloat();
-            ObservableCollection<float> matrixBiParsed = matrix2.ParseToFloat();
-            matrixAiParsed.MultiplyByNumber(accuracy);
-            matrixBiParsed.Substraction(matrixAiParsed);
+            int iterations = int.Parse(AccuracyInputBox.Text);
+            ObservableCollection<ObservableCollection<float>> matrixAiParsed = matrix.ParseMatrixToFloat();
+            ObservableCollection<float> vectorBiParsed = matrix2.ParseVectorToFloat();
+            var vectorXiParsed = matrix3.ParseVectorToFloat();
+            var vectorAnX = matrixAiParsed.MultiplyByVector(vectorXiParsed);
+            vectorBiParsed.VectorSubstraction(vectorAnX);
             // создаём вектор невязок
-            var vectorRk = new ObservableCollection<float>(matrixBiParsed);
+            var vectorRk = new ObservableCollection<float>(vectorBiParsed);
             
-            
-            
-            int a = 0;
 
             #region oldFunctions
 

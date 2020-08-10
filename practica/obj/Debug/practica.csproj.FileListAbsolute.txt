@@ -43,3 +43,17 @@ D:\Files\Documents\C#\practica\practica\obj\Debug\practica.csproj.GenerateResour
 D:\Files\Documents\C#\practica\practica\obj\Debug\practica.csproj.CoreCompileInputs.cache
 D:\Files\Documents\C#\practica\practica\obj\Debug\practica.exe
 D:\Files\Documents\C#\practica\practica\obj\Debug\practica.pdb
+D:\Files\practica\practica\obj\Debug\practica.csprojAssemblyReference.cache
+D:\Files\practica\practica\obj\Debug\MainWindow.g.cs
+D:\Files\practica\practica\obj\Debug\App.g.cs
+D:\Files\practica\practica\obj\Debug\practica_MarkupCompile.cache
+D:\Files\practica\practica\obj\Debug\practica_MarkupCompile.lref
+D:\Files\practica\practica\obj\Debug\practica.exe
+D:\Files\practica\practica\obj\Debug\practica.pdb
+D:\Files\practica\practica\bin\Debug\practica.exe.config
+D:\Files\practica\practica\bin\Debug\practica.exe
+D:\Files\practica\practica\bin\Debug\practica.pdb
+D:\Files\practica\practica\obj\Debug\MainWindow.baml
+D:\Files\practica\practica\obj\Debug\practica.g.resources
+D:\Files\practica\practica\obj\Debug\practica.Properties.Resources.resources
+D:\Files\practica\practica\obj\Debug\practica.csproj.GenerateResource.cache

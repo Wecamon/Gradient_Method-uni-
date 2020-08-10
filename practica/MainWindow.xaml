@@ -14,8 +14,10 @@ mc:Ignorable="d"
 
 Title="Градиентный метод с минимальными невязками" Height="490" Width="660">
 
-    <Grid >
-
+    <Grid>
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
         <TextBlock HorizontalAlignment="Left" Width="30" Margin="20,127,0,0" TextWrapping="Wrap" TextAlignment="Center" FontSize="14" Text="A=" VerticalAlignment="Top"/>
 
         <DataGrid Name="matrixA" Background="LightGray" HorizontalAlignment="Left" Height="174" Margin="66,45,0,0" VerticalAlignment="Top" Width="317"
@@ -48,7 +50,7 @@ AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="False" Lo
         <DataGrid Name="matrixB"  HorizontalAlignment="Left" Height="204" Background="LightGray" Margin="66,246,0,0" VerticalAlignment="Top" Width="100" AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="False" LoadingRow="DG_LoadingRow" />
         <DataGrid Name ="matrixC" HorizontalAlignment="Left" Height="204" Background="LightGray" Margin="491,246,0,0" VerticalAlignment="Top" Width="100" AutoGenerateColumns="False" CanUserAddRows="False" CanUserSortColumns="False" LoadingRow="DG_LoadingRow"/>
         <Label Content="Точность:" HorizontalAlignment="Left" Margin="260,341,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AccuracyInputBox" HorizontalAlignment="Left" Height="17" Margin="260,372,0,0" TextWrapping="Wrap" Text="0,01" VerticalAlignment="Top" Width="86"/>
+        <TextBox x:Name="AccuracyInputBox" HorizontalAlignment="Left" Height="17" Margin="260,372,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="86"/>
         <Button x:Name="Calculate"  Content="Решить" HorizontalAlignment="Left" Height="41" Margin="260,409,0,0" VerticalAlignment="Top" Width="86" Click="Calculate_OnClick"/>
 
     </Grid>
