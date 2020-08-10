@@ -37,30 +37,15 @@ namespace practica
             }
             return result;
         }
-        public static ObservableCollection<float> MultiplyByVector
-            (this ObservableCollection<ObservableCollection<float>> source, ObservableCollection<float> vector)
+        public static float MultiplyVectors
+            (this ObservableCollection<float> source, ObservableCollection<float> factor)
         {
-            var result = new ObservableCollection<float>();
-            var temp=0f;
-            for(int i = 0; i < vector.Count; i++)
+            var result = 0f;
+            for(int i = 0; i < source.Count; i++)
             {
-                temp = 0f;
-                for(int j = 0; j < vector.Count; j++)
-                {
-                    temp += source[i][j] * vector[j];
-                }
-                result.Add(temp);
+                result+=source[i] *= factor[i];
             }
             return result;
-        }
-
-        public static void VectorSubstraction
-            (this ObservableCollection<float> source, ObservableCollection<float> substValue)
-        {
-            for (int i = 0; i < source.Count; i++)
-            {
-                source[i] -= substValue[i];
-            }
         }
     }
 }

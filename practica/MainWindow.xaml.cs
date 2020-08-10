@@ -29,7 +29,85 @@ namespace Practica
         private readonly ObservableCollection<ObservableCollection<string>> matrix3 = new ObservableCollection<ObservableCollection<string>>();
         private int n = 0;
 
+        private void Calculate_OnClick(object sender, RoutedEventArgs e)
+        {
+            int iterations = int.Parse(AccuracyInputBox.Text);
+            var vectorResult = new ObservableCollection<float>(matrix3.ParseVectorToFloat());
+            var vectorBiParsed = matrix2.ParseVectorToFloat();
+            var matrixAiParsed = matrix.ParseMatrixToFloat();
+            Func
+                <ObservableCollection<ObservableCollection<float>>,
+                ObservableCollection<float>,
+                ObservableCollection<float>>
+                MultiplyByVector =
+                (source, vector) =>
+                {
+                    var result = new ObservableCollection<float>();
+                    var temp = 0f;
+                    for (int i = 0; i < vector.Count; i++)
+                    {
+                        temp = 0f;
+                        for (int j = 0; j < vector.Count; j++)
+                        {
+                            temp += source[i][j] * vector[j];
+                        }
+                        result.Add(temp);
+                    }
+                    return result;
+                };
+            Func
+                <ObservableCollection<float>,
+                ObservableCollection<float>,
+                ObservableCollection<float>>
+                VectorSubstraction =
+                (source, substValue) =>
+                {
+                    var result = new ObservableCollection<float>();
+                    for (int i = 0; i < source.Count; i++)
+                    {
+                        result.Add(source[i] - substValue[i]);
+                    }
+                    return result;
+                };
+            Func
+                    <ObservableCollection<float>,
+                    float, ObservableCollection<float>>
+                    VectorByNumber =
+                    (source, number) =>
+                    {
+                        for (int i = 0; i < source.Count; i++)
+                            source[i] *= number;
+                        return source;
+                    };
+            Func
+                <ObservableCollection<float>,
+                ObservableCollection<float>,
+                ObservableCollection<float>>
+                VectorSums =
+                (vec1, vec2) =>
+                {
+                    var result = new ObservableCollection<float>();
+                    for (int i = 0; i < vec1.Count; i++)
+                        result.Add(vec1[i] + vec2[i]);
+                    return result;
+                };
+            for (int k = 0; k < iterations; k++)
+            {
+                var vectorAnX = MultiplyByVector(matrixAiParsed, vectorResult);
 
+                // создаём вектор невязок
+                var vectorRk = VectorSubstraction(vectorBiParsed, vectorAnX);
+
+                // создаём поинтер на матрицу A
+                var denominated = MultiplyByVector(matrixAiParsed, vectorRk).MultiplyVectors(vectorRk);
+                var denominator = MultiplyByVector(matrixAiParsed, vectorRk)
+                    .MultiplyVectors(MultiplyByVector(matrixAiParsed, vectorRk));
+
+                var stepAlphaK = denominated / denominator;
+
+                vectorResult = VectorSums(vectorResult, VectorByNumber(vectorRk, stepAlphaK));
+            }
+        }
 
         private void Create(int countColumn) // заполнение значений в матрицу и грид
         {
@@ -63,7 +141,6 @@ namespace Practica
             
             if (countColumn > 0)
             {
-
                 for (int i = 0; i < countColumn; i++)
                 {
                     DataGridTextColumn column = new DataGridTextColumn
@@ -82,8 +159,6 @@ namespace Practica
             };
             matrixB.Columns.Add(column1);
 
-
-
             DataGridTextColumn column2 = new DataGridTextColumn
             {
                 Header = "1",
@@ -91,8 +166,6 @@ namespace Practica
             };
             matrixC.Columns.Add(column2);
         }
-
-
         private void Generate_Click(object sender, RoutedEventArgs e)  //генерация матрицы
         {
 
@@ -108,51 +181,7 @@ namespace Practica
                 MessageBox.Show("Некорректный ввод размерности");
             }
         }
-
-
-
         private void DG_LoadingRow(object sender, DataGridRowEventArgs e) =>
             e.Row.Header = e.Row.GetIndex() + 1;
-
-        private void Calculate_OnClick(object sender, RoutedEventArgs e)
-        {
-            int iterations = int.Parse(AccuracyInputBox.Text);
-            ObservableCollection<ObservableCollection<float>> matrixAiParsed = matrix.ParseMatrixToFloat();
-            ObservableCollection<float> vectorBiParsed = matrix2.ParseVectorToFloat();
-            var vectorXiParsed = matrix3.ParseVectorToFloat();
-            var vectorAnX = matrixAiParsed.MultiplyByVector(vectorXiParsed);
-            vectorBiParsed.VectorSubstraction(vectorAnX);
-            // создаём вектор невязок
-            var vectorRk = new ObservableCollection<float>(vectorBiParsed);
-            
-
-            #region oldFunctions
-
-            //Func<ObservableCollection<float>, float,ObservableCollection<float>> MultiplyByNumber = (source, number) =>
-            //{
-            //    for (int i = 0; i < source.Count; i++)
-            //        source[i] *= number;
-            //
-            //    return source;
-            //};
-            //Func<ObservableCollection<ObservableCollection<string>>, ObservableCollection<float>> MatrixParser = (source) =>
-            //{
-            //    var result = new ObservableCollection<float>();
-            //    foreach (ObservableCollection<string> collection in source)
-            //    {
-            //        foreach (string item in collection)
-            //        {
-            //            result.Add(float.Parse(item));
-            //            break;
-            //        }
-            //    }
-            //    return result;
-            //};
-
-            #endregion
-        }
     }
 }
-
-
-
