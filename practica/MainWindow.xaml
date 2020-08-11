@@ -15,7 +15,17 @@ Title="Градиентный метод с минимальными невяз�
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        
+        <Menu
+            HorizontalAlignment="Left"
+            Height="20"
+            VerticalAlignment="Top">
+            <MenuItem Header = "Разработчик">
+                <TextBlock Text="Мищенко Руслан; БИСТ-111"/>
+            </MenuItem>
+            <MenuItem Header = "Вариант">
+                <TextBlock Text="Вариант №43: Градиентный метод с минимальными невязками"/>
+            </MenuItem>
+        </Menu>
         <StackPanel
             Grid.Column="1"
             Margin="0 10 20 0">
@@ -64,9 +74,7 @@ Title="Градиентный метод с минимальными невяз�
                 Margin="0 30 0 0"
                 Width="120"
                 Height="30"
-                BorderThickness="2"
-                />
-
+                BorderThickness="2"/>
         </StackPanel>
         <StackPanel
             Grid.Row="1"
@@ -78,7 +86,7 @@ Title="Градиентный метод с минимальными невяз�
                 <Label
                     Content="Vector B"/>
                 <DataGrid
-                    Name="matrixB"
+                    Name="vectorB"
                     HorizontalAlignment="Center"
                     Height="180"
                     Background="LightGray"
@@ -94,7 +102,7 @@ Title="Градиентный метод с минимальными невяз�
                 <Label
                     Content="Vector X(0)"/>
                 <DataGrid
-                    Name ="matrixC"
+                    Name ="vectorXn"
                     HorizontalAlignment="Center"
                     Height="180"
                     Background="LightGray"
@@ -106,19 +114,52 @@ Title="Градиентный метод с минимальными невяз�
             </StackPanel>
         </StackPanel>
 
-        <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="660">
-            <MenuItem Header = "Разработчик">
-                <TextBlock Text="Мищенко Руслан БИСТ-111 "/>
-            </MenuItem>
-            <MenuItem Header = "Вариант">
-                <TextBlock Text="Вариант №43: Решение системы алгебраических уравнений. Градиентный метод с минимальными невязками"/>
-            </MenuItem>
-        </Menu>
-        
-        <Label Content="Точность:" HorizontalAlignment="Left" Margin="260,341,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="AccuracyInputBox" HorizontalAlignment="Left" Height="17" Margin="260,372,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="86"/>
-        <Button x:Name="Calculate"  Content="Решить" HorizontalAlignment="Left" Height="41" Margin="260,409,0,0" VerticalAlignment="Top" Width="86" Click="Calculate_OnClick"/>
-
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Center"
+            Margin="0 0 0 20"
+            Orientation="Horizontal">
+            <StackPanel>
+            <Label
+                Content="K"
+                Margin="0"
+                HorizontalAlignment="Center"/>
+            <TextBox
+                x:Name="AccuracyInputBox"
+                HorizontalAlignment="Center"
+                Height="25"
+                Width="40"
+                Margin="0 2 0 20"
+                TextAlignment="Center"
+                FontSize="16"
+                MaxLength="2"/>
+            <Button
+                x:Name="Calculate"
+                Content="Решить"
+                HorizontalAlignment="Left"
+                Height="30"
+                Width="80"
+                FontSize="14"
+                BorderThickness="2"
+                Click="Calculate_OnClick"/>
+            </StackPanel>
+            <StackPanel
+                Margin="30 0 0 0">
+                <Label
+                    Content="Vector X(k)"/>
+                <DataGrid
+                    Name="vectorXk"
+                    HorizontalAlignment="Center"
+                    Height="180"
+                    Background="LightGray"
+                    VerticalAlignment="Top"
+                    Width="80"
+                    AutoGenerateColumns="False"
+                    CanUserAddRows="False"
+                    CanUserSortColumns="False"
+                    LoadingRow="DG_LoadingRow"/>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 
 </Window>

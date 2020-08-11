@@ -27,10 +27,14 @@ namespace Practica
         private readonly ObservableCollection<ObservableCollection<string>> matrix = new ObservableCollection<ObservableCollection<string>>();
         private readonly ObservableCollection<ObservableCollection<string>> matrix2 = new ObservableCollection<ObservableCollection<string>>();
         private readonly ObservableCollection<ObservableCollection<string>> matrix3 = new ObservableCollection<ObservableCollection<string>>();
+        private readonly ObservableCollection<ObservableCollection<string>> matrixXi = new ObservableCollection<ObservableCollection<string>>();
+
         private int n = 0;
 
         private void Calculate_OnClick(object sender, RoutedEventArgs e)
         {
+            vectorXk.Columns.Clear();
+            matrixXi.Clear();
             int iterations = int.Parse(AccuracyInputBox.Text);
             var vectorResult = new ObservableCollection<float>(matrix3.ParseVectorToFloat());
             var vectorBiParsed = matrix2.ParseVectorToFloat();
@@ -112,6 +116,22 @@ namespace Practica
                 // результат вектор X(k)
                 vectorResult = VectorSums(vectorResult, VectorByNumber(vectorRk, stepAlphaK));
             }
+
+            for (int i = 0; i < vectorResult.Count; i++)
+            {
+                var tempor = new ObservableCollection<string>();
+                tempor.Add(vectorResult[i].ToString());
+                matrixXi.Add(tempor);
+            }
+
+            vectorXk.ItemsSource = matrixXi;
+
+            DataGridTextColumn column3 = new DataGridTextColumn
+            {
+                Header = "1",
+                Binding = new Binding(String.Format("[0]"))
+            };
+            vectorXk.Columns.Add(column3);
         }
 
         private void Create(int countColumn) // заполнение значений в матрицу и грид
@@ -119,16 +139,16 @@ namespace Practica
             matrix.Clear();
             matrix2.Clear();
             matrix3.Clear();
+            matrixXi.Clear();
             matrixA.Columns.Clear();
-            matrixB.Columns.Clear();
-            matrixC.Columns.Clear();
-
+            vectorB.Columns.Clear();
+            vectorXn.Columns.Clear();
+            vectorXk.Columns.Clear();
             for (int i = 0; i < n; i++)
             {
                 var m = new ObservableCollection<string>();
                 var m2 = new ObservableCollection<string>();
                 var m3 = new ObservableCollection<string>();
-
                 for (int j = 0; j < n; j++)
                 {
                     m.Add("0");
@@ -141,9 +161,8 @@ namespace Practica
             }
 
             matrixA.ItemsSource = matrix;
-            matrixB.ItemsSource = matrix2;
-            matrixC.ItemsSource = matrix3;
-            
+            vectorB.ItemsSource = matrix2;
+            vectorXn.ItemsSource = matrix3;
             if (countColumn > 0)
             {
                 for (int i = 0; i < countColumn; i++)
@@ -162,14 +181,16 @@ namespace Practica
                 Header = "1",
                 Binding = new Binding(String.Format("[0]")) 
             };
-            matrixB.Columns.Add(column1);
+            vectorB.Columns.Add(column1);
 
             DataGridTextColumn column2 = new DataGridTextColumn
             {
                 Header = "1",
                 Binding = new Binding(String.Format("[0]"))
             };
-            matrixC.Columns.Add(column2);
+            vectorXn.Columns.Add(column2);
+
+            
         }
         private void Generate_Click(object sender, RoutedEventArgs e)  //генерация матрицы
         {
